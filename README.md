@@ -8,3 +8,6 @@
 - 'Framework : Springboot
 - 'Database : MySQL
 - 'ORM : JPA'
+
+## 주요 기능
+![구매이력](https://user-images.githubusercontent.com/116548183/210966336-3e83071b-de04-4f6c-be71-02857c880ee9.PNG)
