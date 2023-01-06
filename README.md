@@ -13,6 +13,7 @@
 
 # 구현한 기능
  
+ 
  ## 메인화면
 
 * 메인 화면
@@ -21,6 +22,8 @@
 ![메인2](https://user-images.githubusercontent.com/116548183/210969382-cc350ed8-8817-457f-bc68-fcd505c19bdd.PNG)
 ![메인3](https://user-images.githubusercontent.com/116548183/210970438-ee9a3818-0b63-4ed3-9d7c-ceceba970227.PNG)
 ![메인4](https://user-images.githubusercontent.com/116548183/210970449-a3d8f891-d2bb-44f9-ac1c-58513dda08d3.PNG)
+
+
 
 
 ## 상품
@@ -59,6 +62,7 @@
 
 
 
+
 ## 장바구니
 
 * 장바구니 페이지
@@ -66,11 +70,16 @@
 ![장바구니](https://user-images.githubusercontent.com/116548183/210971404-c27eecba-b880-4474-82be-84256947498d.PNG)
 
 
+
+
 ## 구매이력
 
 *구매이력 페이지
 
 ![구매이력](https://user-images.githubusercontent.com/116548183/210966336-3e83071b-de04-4f6c-be71-02857c880ee9.PNG)
+
+
+
 
 ## 문의
 
@@ -100,6 +109,9 @@
 
 
 * 관리자 문의 답변 페이지
-![관리자 문의](https://user-images.githubusercontent.com/116548183/210973772-e17cff3c-f7d5-4abf-b6e2-0d030dbb1052.PNG)
+
+![관리자 문의](https://user-images.githubusercontent.com/116548183/210974957-cb25dcdb-6b63-4455-adc4-3ad964137246.PNG)
+
+
 
 
