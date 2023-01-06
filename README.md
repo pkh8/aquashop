@@ -41,7 +41,9 @@
 ![상품등록 페이지](https://user-images.githubusercontent.com/116548183/210970957-91e73f71-6aff-464c-a455-8620e122a2a0.PNG)
 
 
-##회원가입, 로그인
+
+
+## 회원가입 및 로그인
 
 * 로그인 페이지
 
@@ -56,21 +58,36 @@
 ![회원정보 수정 페이지](https://user-images.githubusercontent.com/116548183/210971059-08da8358-2e41-4eb6-b6d9-1aef514e3fbe.PNG)
 
 
-# 장바구니
+
+## 장바구니
 
 * 장바구니 페이지
 
 ![장바구니](https://user-images.githubusercontent.com/116548183/210971404-c27eecba-b880-4474-82be-84256947498d.PNG)
 
 
-# 구매이력
+## 구매이력
 
 *구매이력 페이지
 
 ![구매이력](https://user-images.githubusercontent.com/116548183/210966336-3e83071b-de04-4f6c-be71-02857c880ee9.PNG)
 
+## 문의
 
-# 관리자
+* 나의 문의 목록
+
+![나의 문의 리스트](https://user-images.githubusercontent.com/116548183/210973684-d63bb845-03ab-42aa-aff9-895aaed5f4bf.PNG)
+
+
+
+* 문의작성
+
+![문의 작성](https://user-images.githubusercontent.com/116548183/210973201-da0e62fe-bd7c-4d06-9136-7b0d6602220c.PNG)
+
+
+
+
+## 관리자
 
 * 회원관리 페이지
 
@@ -81,4 +98,8 @@
 
 ![관리자 상품관리 페이지](https://user-images.githubusercontent.com/116548183/210972620-bce99765-bb98-4d33-bdf9-db8e7a8fd3a0.PNG)
 
-* 
+
+* 관리자 문의 답변 페이지
+![관리자 문의](https://user-images.githubusercontent.com/116548183/210973772-e17cff3c-f7d5-4abf-b6e2-0d030dbb1052.PNG)
+
+
