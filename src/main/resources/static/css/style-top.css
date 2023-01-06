@@ -1,0 +1,59 @@
+
+    .wrapper{
+
+      min-height: 100%;
+      margin : 0;
+      justify-content : right;
+    }
+
+  .top-black{
+    	display: block;
+  }
+
+.top{
+    vertical-align:middle;
+    background-color: ghostwhite;
+    position: relative;
+    left: 0;
+    padding : 0;
+    width: 100%;
+    height : 30px;
+    padding-top: 10px;
+}
+
+.top p {
+    font-size: 12px;
+    line-height: 0px;
+}
+.top p: hover{
+    color: #a8a8a8;
+}
+.top-menu{
+    width:auto;
+     position: relative;
+     min-width: 10rem;
+    display: inline;
+}
+.top-menu li{
+    display: inline-block;
+}
+.top-menu .top-left a p {
+    float: left;
+    color: black;
+}
+.top-menu .top-left:hover  p {
+    color: darkgray;
+}
+
+.top-menu .top-right{
+    float : right;
+    padding-right : 20px;
+
+}
+.top-menu .top-right a p{
+    float: right;
+    color: black;
+}
+.top-menu .top-right:hover p{
+    color: darkgray;
+}

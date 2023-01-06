@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout2}">
+<head>
+
+    <!-- 사용자 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:inline="javascript">
+              $(document).ready(function(){
+            var errorMessage = [[${errorMessage}]];
+            if(errorMessage != null){
+                alert(errorMessage);
+            }
+            bindDomEvent();
+        });
+
+        function bindDomEvent(){
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();  //이미지 파일명
+                var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자 추출
+                fileExt = fileExt.toLowerCase(); //소문자 변환
+
+                if(fileExt != "jpg" && fileExt != "jpeg" && fileExt != "gif" && fileExt != "png" && fileExt != "bmp"){
+                    alert("이미지 파일만 등록이 가능합니다.");
+                    return;
+                }
+                $(this).siblings(".custom-file-label").html(fileName);
+            });
+            $(document).ready(function(){
+            $("#searchBtn").on("click",function(e) {
+                e.preventDefault();
+                page(0);
+            });
+        });
+
+        function page(page){
+            var searchDateType = $("#searchDateType").val();
+            var searchSellStatus = $("#searchSellStatus").val();
+            var searchBy = $("#searchBy").val();
+            var searchQuery = $("#searchQuery").val();
+
+            location.href="/admin/items/" + page + "?searchDateType=" + searchDateType
+            + "&searchSellStatus=" + searchSellStatus
+            + "&searchBy=" + searchBy
+            + "&searchQuery=" + searchQuery;
+        }
+        </script>
+    </th:block>
+
+    <!-- 사용자 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <style>
+        h3 {
+            text-align: center;
+            margin : 30px 0;
+        }
+        .input-group {
+            margin-bottom : 15px;
+        }
+        .img-div {
+            margin-bottom : 10px;
+        }
+        .fieldError {
+            color : #bd2130;
+        }
+        .btn {
+            border-radius : 0px;
+            margin-left:10px;
+        }
+        </style>
+    </th:block>
+
+</head>
+
+
+    <div layout:fragment="content">
+
+    <form>
+        <h2>주문 정보</h2>
+    <br><br>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>주문번호</td>
+            <td>수령인</td>
+            <td>주문시간</td>
+            <td>우편번호</td>
+            <td>주소</td>
+            <td>주문관리</td>
+            <td>주문상태</td>
+        </tr>
+        </thead>
+
+
+
+
+    </table>
+    </form>
+
+
+</div>
+</html>

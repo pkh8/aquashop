@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout2}">
+
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            calculateTotalPrice();
+            $("#count").change( function(){
+                calculateTotalPrice();
+            });
+        });
+
+
+        <!-- 상품 결제 금액 -->
+        function calculateTotalPrice(){
+            var count = $("#count").val();
+            var price = $("#price").val();
+            var totalPrice = price*count;
+            $("#totalPrice").html(totalPrice + '원');
+        }
+
+        <!-- 상품 주문하기 -->
+        function order(){
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/order";
+            var paramData = {
+                itemId : $("#itemId").val(),
+                count : $("#count").val()
+            };
+
+            var param = JSON.stringify(paramData);
+
+            $.ajax({
+                url      : url,
+                type     : "POST",
+                contentType : "application/json",
+                data     : param,
+                beforeSend : function(xhr){
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
+                    alert("주문이 완료 되었습니다.");
+                    location.href='/orders';
+                },
+                error : function(jqXHR, status, error){
+
+                    if(jqXHR.status == '500'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/members/login';
+                    } else{
+                        alert(jqXHR.responseText);
+                    }
+
+                }
+            });
+        }
+
+
+
+
+        <!-- 상품 장바구니 담기 -->
+        function addCart(){
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/cart";
+            var paramData = {
+                itemId : $("#itemId").val(),
+                count : $("#count").val()
+            };
+
+            var param = JSON.stringify(paramData);
+
+            $.ajax({
+                url      : url,
+                type     : "POST",
+                contentType : "application/json",
+                data     : param,
+                beforeSend : function(xhr){
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
+                    alert("상품을 장바구니에 담았습니다.");
+                    location.href='/cart';
+                },
+                error : function(jqXHR, status, error){
+
+                    if(jqXHR.status == '500'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/members/login';
+                    } else{
+                        alert(jqXHR.responseText);
+                    }
+
+                }
+            });
+        }
+    </script>
+</th:block>
+<!-- 사용자 CSS 추가 -->
+
+<!-- 사용자 CSS 추가 -->
+
+
+<!--전체 박스 시작 -->
+
+
+ <div layout:fragment="content" >
+    <hr>
+
+
+<div class="wrap">
+    <div class="product_view">
+        <input type="hidden" id="itemId" th:value="${item.id}">
+        <div class="h2 text-right" th:text="${item.itemNm}"></div>
+        <table>
+            <caption>
+                <details class="hide text-center">
+                    <summary>상품정보</summary>
+                    판매가, 상품코드, 옵션 및 결제금액 안내
+                </details>
+            </caption>
+            <colgroup>
+                <col style="width:173px;">
+                <col>
+            </colgroup>
+            <tbody>
+
+            <tr>
+                <th>판매가</th>
+                <input type="hidden" th:value="${item.price}" id="price" name="price">
+                <td class="price" th:text="${item.price}"></td>
+            </tr>
+
+            <tr>
+                <th>상품번호</th>
+                <td th:text="${item.id}"></td>
+            </tr>
+            <tr>
+                <th>제조사/공급사</th>
+                <td>######</td>
+            </tr>
+            <tr>
+                <th>구매수량</th>
+                <td>
+                    <div>
+                        <input type="number" name="count" id="count" class=" length text-center" value="1" min="1">
+<!--                        <button class="quantity_btn plus_btn">+</button>-->
+<!--                        <button class="quantity_btn minus_btn">-</button>-->
+                    </div>
+<!--                    <a class="quantity_modify_btn" data-cartId="${item.cartId}">변경</a>-->
+                </td>
+            </tr>
+
+            <tr>
+                <th>배송비</th>
+                <td>무료배송</td>
+            </tr>
+            <tr>
+                <th>결제금액</th>
+                <td class="totalPrice" id="totalPrice"><b></b>원</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="img">
+            <img th:src="${item.itemImgDtoList[0].imgUrl}" class="imgDtl" th:alt="${item.itemNm}">
+<!--            <ul>-->
+<!--                <li class="on"><a href="#a"><img src="images/@thoumb.png" alt=""></a></li>-->
+<!--                <li><a href="#a"><img src="images/@thoumb.png" alt=""></a></li>-->
+<!--            </ul>-->
+        </div>
+             <div th:if="${item.itemSellStatus == T(com.shop.aqua.constant.ItemSellStatus).SELL}" class="text-right">
+                 <button type="button" class="btn btn-light border border-primary btn-lg" onclick="addCart()">장바구니 담기</button>
+                 <button type="button" class="btn btn-primary btn-lg" onclick="order()">주문하기</button>
+             </div>
+                <div th:unless="${item.itemSellStatus == T(com.shop.aqua.constant.ItemSellStatus).SELL}" class="text-right">
+                    <button type="button" class="btn btn-danger btn-lg">품절</button>
+                </div>
+        </div>
+
+    </div>
+
+    <div class="jumbotron jumbotron-fluid mgt-30" style="height:480px;">
+        <div class="container">
+            <h4 class="display-5">상품 상세 설명</h4>
+            <hr class="my-4">
+            <p class="lead" th:text="${item.itemDetail}"></p>
+        </div>
+    </div>
+
+ </div>
+
+
+
+
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout2}">
+
+
+<th:block layout:fragment="css">
+    <style>
+        h3 {
+            text-align: center;
+            margin : 20px 0;
+        }
+        .content-mg{
+            min-height : 50vh;
+        }
+        .row {
+            margin : 0 20% 0 20%;
+            flex-direction : column;
+        }
+        .btn-lg {
+            display : inline-block;
+            margin: 10px 5px 20px 5px;
+            border-radius : 0px;
+            background-color : #333;
+            color : #f9f9f9;
+            min-width : 70px;
+        }
+        .btn-danger {
+            border-radius : 0px;
+        }
+
+    </style>
+</th:block>
+
+
+
+<div layout:fragment="content" >
+    <div class="row">
+        <h3> 1:1 문의내역 (관리자) </h3>
+
+            <table class="table">
+                <thead>
+                <tr text-align="center">
+                    <td>번호</td>
+                    <td>작성자</td>
+                    <td>분류</td>
+                    <td>제목</td>
+                    <td>답변여부</td>
+                    <td>답변</td>
+                    <td>관리</td>
+                </tr>
+        </thead>
+        <tbody>
+        <!--            <tr th:each="qna : ${qnaList}">-->
+        <tr th:each="qna, loop : ${paging}">
+            <td th:text="${qna.id}"></td>
+            <td th:text="${qna.member.memberName}"></td>
+            <td th:text="${qna.qnaNm}"></td>
+            <td>
+                <a th:href="'/qna/admin/list/'+${qna.id}" th:text="${qna.title}"></a>
+            </td>
+            <td th:text="${qna.qnaStatus == T(com.shop.aqua.constant.QnaStatus).WAITING} ? '답변대기' : '답변완료'"></td>
+            <td>
+                <button type="button" class="btn btn-q"><a th:href="'/qna/update/'+${qna.id}">답변</a></button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger"><a th:href="@{/qna/admin/delete?(id=${qna.id})}">삭제</a>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+</div>
+
+</html>

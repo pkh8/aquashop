@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<header th:fragment="header1">
+    <div class="top">
+
+        <div class="container">
+            <ul class="top-menu">
+                <!--                <li class="top-left"><a href="#"><p>즐겨찾기</p></a></li>-->
+                <li class="top-left" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/item/new"><p>상품등록&nbsp;</p></a></li>
+                <li class="top-left" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/items"><p>상품관리&nbsp;</p></a></li>
+                <li class="top-right" sec:authorize="isAnonymous()"><a href="/members/new"><p>회원가입&nbsp;</p></a></li>
+                <li class="top-right" sec:authorize="isAnonymous()"><a href="/members/login"><p>로그인&nbsp;</p></a></li>
+                <li class="top-right" sec:authorize="isAuthenticated()"><a href="/members/logout"><p>로그아웃</p></a></li>
+                <li class="top-right" sec:authorize="isAuthenticated()"><a href="/orders"><p>구매이력</p></a></li>
+            </ul>
+        </div>
+    </div>
+        <nav class="navbar navbar-expand-sm">
+            <div class="container-lg">
+        <div class="container">
+
+            <a class="navbar-brand" href="/">
+                <img src="/assets/img/aqualogo.jpg" >
+                <!--                <i class="fas fa-film mr-2"></i>-->
+            </a>
+
+            <form id="headerSearchForm"  th:action="@{/}" method="get">
+
+                    <div class="search_box">
+                <input name="searchQuery" class="headerSearchForm-input" type="search"  aria-label="Search" />
+                <button class="headerSearchForm-btn tiny material-icons"  type="submit"> <i class="tiny material-icons">search</i>
+                </button>
+                    </div>
+
+            </form>
+            <div class="dropdown" sec:authorize="isAuthenticated()">
+                <a href="#" data-toggle="dropdown"><img src="/assets/img/my.png" alt="myPage-icon" width="50" height="50"></a>
+                <ul class="dropdown-menu">
+                    <li role="presentation" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a role="menuitem" tabindex="-1" href="/members/list">회원관리</a></li>
+
+                    <li role="presentation" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a role="menuitem" tabindex="-1" href="/admin/item/new">상품등록</a></li>
+                    <li role="presentation" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a role="menuitem" tabindex="-1" href="/admin/items">상품관리</a></li>
+                    <li role="presentation" sec:authorize="isAuthenticated()"><a role="menuitem" tabindex="-1" href="/admin/orders">주문정보</a></li>
+                    <li role="presentation" sec:authorize="isAuthenticated()"><a role="menuitem" tabindex="-1" href="/orders">구매이력</a></li>
+                    <li role="presentation" sec:authorize="isAuthenticated()"><a role="menuitem" tabindex="-1" href="/members/user">개인정보수정</a></li>
+                    <li><a href="/qna/list">QNA</a>
+                    <li role="presentation" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a role="menuitem" tabindex="-1" href="/qna/admin">QNA(관리자)</a></li>
+                </ul>
+
+            </div>
+
+                <div class="cart-icon" sec:authorize="isAuthenticated()">
+                <a href="/cart"><img src="/assets/img/cart.png" alt="cart-icon" width="50" height="50"></a>
+                </div>
+            <div class="clearer"></div>
+
+                </div>
+            </div>
+        </nav>
+
+
+    <hr>
+    <br>
+    <div class="container">
+        <div class="wrap">
+            <div id="nav">
+                <ul>
+                    <li><a href="/itemList" class="btn-primary text-white">전체</a></li>
+                    <li><a href="/category/fish" class="btn-primary text-white">열대어</a></li>
+                    <li><a href="/category/fishingPort" class="btn-primary text-white">어항</a></li>
+                    <li><a href="/category/food" class="btn-primary text-white">먹이</a></li>
+                    <li><a href="/category/lighting" class="btn-primary text-white">조명</a></li>
+                    <li><a href="/category/plant" class="btn-primary text-white">수초</a></li>
+                </ul>
+                <div class="clearer">&nbsp;</div>
+            </div>
+
+
+        </div>
+
+        </div>
+
+
+</header>
+
+
+</html>
