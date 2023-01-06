@@ -9,12 +9,13 @@
 - 'Database : MySQL
 - 'ORM : JPA'
 
-## 구현한 기능![메인3](https://user-images.githubusercontent.com/116548183/210968792-71fe4c8a-07b0-4007-917f-30d5a1d1be67.PNG)
-메인 페이지
+## 구현한 기능
+ 
+ * 메인 페이지
+ * 
 ![메인1](https://user-images.githubusercontent.com/116548183/210968757-65003add-eb6e-44ea-b3c5-30a957a4fcee.PNG)
 ![메인2](https://user-images.githubusercontent.com/116548183/210968768-5047749f-67bc-408c-956a-6b11d97f7e2e.PNG)
-!![메인2](https://user-images.githubusercontent.com/116548183/210968789-7f54685b-624d-4ff9-96e4-73d643927cf2.PNG)
-[Uploading 메인3.PNG…]()
+![Uploading 메인3.PNG…]()
 
 
 
